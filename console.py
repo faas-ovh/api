@@ -6,6 +6,18 @@ from collections import namedtuple
 
 import argparse
 
+parser = argparse.ArgumentParser(description="Python script to execute BASH scripts on Linux boxes remotely.")
+parser.add_argument("host", help="IP or domain of SSH Server")
+parser.add_argument("-u", "--user", required=True, help="The username you want to access to.")
+parser.add_argument("-p", "--password", required=True, help="The password of that user")
+parser.add_argument("-b", "--bash", required=True, help="The BASH script you wanna execute")
+
+args = parser.parse_args()
+hostname = args.host
+username = args.user
+password = args.password
+bash_script = args.bash
+
 config = "..\\config\\faas.json"
 
 str = open(config, "r").read()
