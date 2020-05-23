@@ -27,7 +27,7 @@ windows
     .\uvicorn.start.bat
 
 ## Environment
-    pip3 install -r requirements.txt
+    py -m pip install -r requirements.txt
     
     pip install -r src/requirements.txt
 
