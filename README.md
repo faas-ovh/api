@@ -27,6 +27,7 @@ windows
     .\uvicorn.start.bat
 
 ## Environment
+    py -m pip install paramiko
     py -m pip install -r requirements.txt
     
     pip install -r src/requirements.txt
