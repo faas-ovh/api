@@ -37,7 +37,7 @@ def connect(Server):
     # add to known hosts
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        client.connect(hostname=Server.hostname, username=Server.username, password=Server.password)
+        client.connect(hostname=Server.ip, username=Server.username, password=Server.password)
         return client
     except:
         print("[!] Cannot connect to the SSH Server")
@@ -54,34 +54,26 @@ def execScript(client, script):
     client.close()
 
 
-def getClient(config):
+def getClient(hostname, config):
     str = open(config, "r").read()
     dicts = json.loads(str)
     for dict in dicts:
         # print(dict)
         Server = namedtuple("Server", dict.keys())(*dict.values())
-        print(Server.ip)
-        if Server.ip == "93.90.201.35":
+        print(Server.ip, Server.hostname, Server.os)
+        if Server.hostname == hostname:
             print(Server)
             return connect(Server)
 
 
-client = getClient("..\\config\\faas.json")
-# execScript(client, "script.sh")
+client = getClient("1.faas.ovh", "..\\config\\faas.json")
 # execScript(client, "apt.sh")
 # execScript(client, "git.sh")
 # execScript(client, "git-user.sh")
-# execScript(client, "promagen.sh")
-execScript(client, "promagen2.sh")
-# execScript(client, "promagen3.sh")
-
-# exit()
-#
-# class Server(object):
-#     def __init__(self, hostname, username, password, *args, **kwargs):
-#         self.hostname = hostname
-#         self.username = username
-#         self.password = password
+# execScript(client, "promagen/install.sh")
+# execScript(client, "promagen/start.sh")
+execScript(client, "promagen/stop.sh")
+# execScript(client, "promagen/update.sh")
 
 # s = Server(cfg)
 #
