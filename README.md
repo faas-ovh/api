@@ -12,8 +12,11 @@ To run this:
 ## inspiration
 https://github.com/x4nth055/pythoncode-tutorials/tree/master/general/execute-ssh-commands
 
-start
+## start
 
+    py ssh.py
+
+## others    
     run.bat
     browser
 
